@@ -4,72 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>用户模拟与 Persona 评测 · 赛道简报</title>
+  <link rel="stylesheet" href="https://psylch.github.io/assets/report.css">
   <style>
-    :root {
-      --bg: #f5f5f4;
-      --card: #ffffff;
-      --text: #1c1917;
-      --muted: #57534e;
-      --border: #d6d3d1;
-      --accent: #1e3a5f;
-      --link: #1d4ed8;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0; padding: 0;
-      font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", sans-serif;
-      background: var(--bg); color: var(--text);
-      font-size: 17px; line-height: 1.7;
-    }
-    .wrap { max-width: 880px; margin: 0 auto; padding: 24px 20px 48px; }
-    header {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 10px; padding: 20px 24px; margin-bottom: 16px;
-    }
-    header .meta { font-size: 14px; color: var(--muted); margin-bottom: 6px; }
-    h1 { margin: 0; font-size: 1.65rem; line-height: 1.3; color: var(--accent); }
-    .subtitle { margin: 8px 0 0; color: var(--muted); font-size: 15px; }
-    section {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 10px; padding: 20px 24px; margin-bottom: 16px;
-    }
-    h2 {
-      margin: 0 0 14px; font-size: 1.22rem; color: var(--accent);
-      padding-bottom: 8px; border-bottom: 2px solid var(--border);
-    }
-    h3 { margin: 18px 0 8px; font-size: 1.05rem; }
-    h3:first-of-type { margin-top: 4px; }
-    p, li { margin: 0 0 10px; }
-    ul, ol { padding-left: 1.35em; margin: 0 0 4px; }
-    a { color: var(--link); word-break: break-word; }
-    table { width: 100%; border-collapse: collapse; font-size: 15px; margin: 6px 0 4px; }
-    th, td {
-      border: 1px solid var(--border); padding: 10px 12px;
-      text-align: left; vertical-align: top;
-    }
-    th { background: #f0f0ef; font-weight: 600; color: var(--accent); }
-    tr:nth-child(even) td { background: #fafaf9; }
-    .player {
-      border: 1px solid var(--border); border-radius: 8px;
-      padding: 14px 16px; margin-bottom: 12px;
-    }
-    .player h4 { margin: 0 0 6px; font-size: 1rem; color: var(--accent); }
-    .player .tag {
-      display: inline-block; font-size: 12px; color: var(--muted);
-      border: 1px solid var(--border); border-radius: 999px;
-      padding: 1px 8px; margin: 0 6px 8px 0;
-    }
-    footer {
-      margin-top: 8px; font-size: 13px; color: var(--muted); text-align: center;
-    }
+    .report .card .tag { margin: 0 6px 10px 0; }
+    .report .card .nm { margin-bottom: 10px; }
   </style>
 </head>
-<body>
-  <div class="wrap">
+<body class="report">
+  <main>
+    <a class="back" href="https://psylch.github.io/">← psylch</a>
     <header>
       <div class="meta">Sourcing Research · 截至 2026-10-20</div>
       <h1>用户模拟与 Persona 评测</h1>
-      <p class="subtitle">Agent 产品上线前的中间层：用带画像的模拟用户，先筛体验与偏好问题</p>
+      <p class="lead">Agent 产品上线前的中间层：用带画像的模拟用户，先筛体验与偏好问题</p>
     </header>
 
     <section>
@@ -126,50 +73,50 @@
     <section>
       <h2>开源与学术</h2>
 
-      <div class="player">
-        <h4>Stanford Generative Agents（Smallville）</h4>
+      <div class="card">
+        <h4 class="nm">Stanford Generative Agents（Smallville）</h4>
         <span class="tag">开源研究</span><span class="tag">2023 UIST</span>
         <p>用 LLM Agent 在类 Sims 沙盒里模拟 25 个角色的日程、记忆与社交，奠定「生成式 Agent 社会」范式。关键作者包括 Joon Sung Park、Joseph C. O’Brien、Carrie J. Cai（Google Research）、Meredith Ringel Morris（Google DeepMind）、Percy Liang、Michael S. Bernstein（Stanford）。</p>
         <p><a href="https://arxiv.org/abs/2304.03442">论文</a></p>
       </div>
 
-      <div class="player">
-        <h4>腾讯 AI Lab · Persona Hub（Ge et al.）</h4>
+      <div class="card">
+        <h4 class="nm">腾讯 AI Lab · Persona Hub（Ge et al.）</h4>
         <span class="tag">开源数据</span><span class="tag">合成训练</span>
         <p>约 10.16 亿条从网页策展的 persona，主要用于大规模合成训练数据（数学题、指令、NPC 等），不是已验证的十亿在线用户产品评测。作者包括 Tao Ge、Xin Chan、Xiaoyang Wang、Dian Yu、Haitao Mi、Dong Yu（Tencent AI Lab Seattle）。论文 2024-06 首发，后续有修订。</p>
         <p><a href="https://arxiv.org/abs/2406.20094">论文</a> · <a href="https://github.com/tencent-ailab/persona-hub">GitHub</a></p>
       </div>
 
-      <div class="player">
-        <h4>NVIDIA Nemotron-Personas</h4>
+      <div class="card">
+        <h4 class="nm">NVIDIA Nemotron-Personas</h4>
         <span class="tag">开源数据</span><span class="tag">CC BY 4.0</span>
         <p>按真实人口地理分布生成的多地区合成 persona；首发约 60 万（美国，2025-06），后续扩展多国，文档称集合达数千万级。主要用于模型训练、指令微调与安全红队。关键人包括 Yev Meyer、Dane Corneil（NVIDIA）；工具链来自并入 NVIDIA / NeMo 的 Gretel Data Designer。</p>
         <p><a href="https://huggingface.co/blog/nvidia/nemotron-personas">介绍</a> · <a href="https://huggingface.co/collections/nvidia/nemotron-personas">数据集合集</a></p>
       </div>
 
-      <div class="player">
-        <h4>OASIS（CAMEL-AI）</h4>
+      <div class="card">
+        <h4 class="nm">OASIS（CAMEL-AI）</h4>
         <span class="tag">开源</span><span class="tag">社会模拟</span>
         <p>可扩展至约百万级 Agent 的社交媒体模拟器（类 X / Reddit），研究信息传播与极化等。论文作者包括 Ziyi Yang、Guohao Li 等。Guohao Li 另创办 Eigent AI（多 Agent 基础设施）；OASIS 本身以开源研究呈现。</p>
         <p><a href="https://oasis.camel-ai.org/">站点</a> · <a href="https://arxiv.org/html/2411.11581">论文</a></p>
       </div>
 
-      <div class="player">
-        <h4>AgentSociety（清华 FIB Lab 等）</h4>
+      <div class="card">
+        <h4 class="nm">AgentSociety（清华 FIB Lab 等）</h4>
         <span class="tag">开源</span><span class="tag">社会模拟</span>
         <p>大规模 LLM 社会模拟，带情感、需求、认知与城市 / 经济 / 社交环境；论文称可支撑逾 1 万 Agent、约 500 万次交互量级实验，用于极化、UBI、灾害等社科实验。通讯作者 Yong Li（清华大学）；一作含 Jinghua Piao 等。</p>
         <p><a href="https://arxiv.org/abs/2502.08691">论文</a> · <a href="https://agentsociety.fiblab.net/">站点</a></p>
       </div>
 
-      <div class="player">
-        <h4>Microsoft · SimulatorArena</h4>
+      <div class="card">
+        <h4 class="nm">Microsoft · SimulatorArena</h4>
         <span class="tag">开源基准</span><span class="tag">EMNLP 2025</span>
         <p>专门回答「用户模拟器能不能当真人多轮评测的代理」：909 段真人–LLM 对话（数学辅导 + 文档写作）；带用户画像的模拟器与真人评分 Spearman ρ 约 0.7；成本称不到真人约 3%。作者包括 Yao Dou、Alan Ritter、Wei Xu（Georgia Tech）以及 Michel Galley、Baolin Peng、Jianfeng Gao 等（Microsoft）。</p>
         <p><a href="https://arxiv.org/abs/2510.05444">论文</a> · <a href="https://github.com/microsoft/SimulatorArena">GitHub</a></p>
       </div>
 
-      <div class="player">
-        <h4>MatrAIx</h4>
+      <div class="card">
+        <h4 class="nm">MatrAIx</h4>
         <span class="tag">开源 + 初创</span><span class="tag">2026-08 论文</span>
         <p>宣称约 83 亿条 persona 记录，配合问卷 / 聊天 / 网页 / App 四类环境做 AI 与数字产品的模拟用户评测；公开约 100 万条 coreset。论文 2026-08-04 上 arXiv；公司 LinkedIn 写 2026 年 Mountain View。CEO / Co-founder Xiaomin Li（Harvard 应用数学博士；履历含 DeepMind、Microsoft 相关岗位）；COO / Co-founder Yuexing Hao（Cornell 博士、MIT 相关履历）。</p>
         <p><a href="https://matraix.ai/">官网</a> · <a href="https://arxiv.org/abs/2608.04205">论文</a> · <a href="https://github.com/MatrAIx-ai/MatrAIx-Persona-8B">GitHub</a></p>
@@ -179,36 +126,36 @@
     <section>
       <h2>商业公司</h2>
 
-      <div class="player">
-        <h4>Synthetic Users</h4>
+      <div class="card">
+        <h4 class="nm">Synthetic Users</h4>
         <span class="tag">SaaS</span><span class="tag">2022</span>
         <p>用多 Agent 与 OCEAN 等人格做合成定性研究（问题探索、概念与文案测试）；自称发现协作者而非替代真人，官网写 synthetic–organic 对齐率约 85–92%，并称 SOC 2。创始人 Kwame Ferreira、Hugo Alves。有 Comcast NBCUniversal LIFT Labs、Urban Innovation Fund 等投资痕迹；公开轮次金额未在可靠信源核实到具体数字。</p>
         <p><a href="https://www.syntheticusers.com/">官网</a></p>
       </div>
 
-      <div class="player">
-        <h4>Blok</h4>
+      <div class="card">
+        <h4 class="nm">Blok</h4>
         <span class="tag">SaaS</span><span class="tag">合计 $7.5M</span>
         <p>从 Amplitude / Mixpanel / Segment 事件日志建行为 persona，对 Figma 设计跑模拟并给实验洞察。2024 创立，2025-07 出 stealth。Seed $5M 由 MaC Venture Capital 领投；pre-seed 有 Protagonist 等。创始人 Tom Charman、Olivia Higgs。早期 waitlist 偏金融与医疗。</p>
         <p><a href="https://techcrunch.com/2025/07/09/blok-is-using-ai-persons-to-simulate-real-world-app-usage/">TechCrunch</a></p>
       </div>
 
-      <div class="player">
-        <h4>Uxia（巴塞罗那）</h4>
+      <div class="card">
+        <h4 class="nm">Uxia（巴塞罗那）</h4>
         <span class="tag">SaaS</span><span class="tag">Pre-seed ~€1M</span>
         <p>用 AI 合成用户测原型可用性。2025 创立；约 €750k 股权 + Enisa 贷款预期凑近 €1M。Abac Nest 领投，Encomenda、UserZoom 联合创始人 Javier Darriba 等参投。CEO Borja Díaz-Roig（前 TransferGo Product Growth）；CTO Víctor Perdiguer。</p>
         <p><a href="https://www.eu-startups.com/2025/11/spanish-startup-uxia-lands-e1-million-to-develop-synthetic-user-technology-for-product-teams/">EU-Startups</a> · <a href="https://www.uxia.app/blog/announcing-our-pre-seed-investment-round">官方公告</a></p>
       </div>
 
-      <div class="player">
-        <h4>Artificial Societies（伦敦，societies.io）</h4>
+      <div class="card">
+        <h4 class="nm">Artificial Societies（伦敦，societies.io）</h4>
         <span class="tag">YC W25</span><span class="tag">约 $5.35M</span>
         <p>行为科学 + 大规模合成受众，测传播、危机、市场与政策反应。2024-10 联合创立；pre-seed 约 $2M（Kindred Capital 领投）+ seed 约 $3.35M（Point72 Ventures 领投，含 YC 等）。CEO James He（剑桥计算社科背景）；CPO Patrick Sharpe（行为科学 / Swiss Re iptiQ 等）。自称 250 万+ AI personas，产品名 Radiant。</p>
         <p><a href="https://www.ycombinator.com/companies/artificial-societies">YC</a> · <a href="https://www.finsmes.com/2025/08/artificial-societies-raises-5-35m-in-funding.html">FinSMEs</a></p>
       </div>
 
-      <div class="player">
-        <h4>Swarm（useswarm.co）</h4>
+      <div class="card">
+        <h4 class="nm">Swarm（useswarm.co）</h4>
         <span class="tag">SaaS</span><span class="tag">&gt;$100K</span>
         <p>在真实浏览器里跑 AI persona，测 web / mobile 流程并找卡点与流失。创始人 Aryan Aladar（UNC）；Chapel Hill 创立、旧金山运营。投资方公开信息含 Afore、LeapYear、Launch Chapel Hill；2026-02 公开发布。</p>
         <p><a href="https://www.useswarm.co/">官网</a> · <a href="https://www.useswarm.co/blog/why-i-started-swarm">创始说明</a></p>
@@ -259,7 +206,8 @@
       </ul>
     </section>
 
-    <footer>终稿 · 仅含核实后的事实与出处</footer>
-  </div>
+    <footer class="foot">终稿 · 仅含核实后的事实与出处</footer>
+  </main>
+  <script src="https://psylch.github.io/assets/report.js"></script>
 </body>
 </html>
