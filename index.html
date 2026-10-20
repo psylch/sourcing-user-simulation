@@ -1,213 +1,325 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>用户模拟与 Persona 评测 · 赛道简报</title>
-  <link rel="stylesheet" href="https://psylch.github.io/assets/report.css">
-  <style>
-    .report .card .tag { margin: 0 6px 10px 0; }
-    .report .card .nm { margin-bottom: 10px; }
-  </style>
+<!doctype html>
+<html lang="zh-CN" class="no-js"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI 用户模拟赛道 · 公司 Sourcing</title>
+<meta name="description" content="AI 用户模拟 / 合成用户赛道中外公司：创始人、融资、差异点、客户">
+<link rel="stylesheet" href="https://psylch.github.io/assets/report.css">
 </head>
-<body class="report">
-  <main>
-    <a class="back" href="https://psylch.github.io/">← psylch</a>
-    <header>
-      <div class="meta">Sourcing Research · 截至 2026-10-20</div>
-      <h1>用户模拟与 Persona 评测</h1>
-      <p class="lead">Agent 产品上线前的中间层：用带画像的模拟用户，先筛体验与偏好问题</p>
-    </header>
-
-    <section>
-      <h2>这篇在讲什么</h2>
-      <p>这里的 simulation，指用大语言模型扮演带人格画像的「假用户」，在问卷、对话、网页或 App 里跑一遍，看产品和 AI 助手在不同人群上的完成率、满意度与偏好差。它介于传统 UX 调研与能力基准评测（如 SWE-bench）之间。</p>
-      <p>不包含机器人物理仿真、自动驾驶仿真，也不包含纯游戏 NPC 市场。腾讯 Persona Hub 一类项目主要服务合成训练数据，与「产品上线前测体验」相邻，但买家不同，下文单独标注。</p>
-    </section>
-
-    <section>
-      <h2>为什么现在热</h2>
-      <ul>
-        <li>Agent 与 AI 产品迭代很快，真人人测贵、慢、难复现。</li>
-        <li>传统 A/B 和分析工具偏事后；产品团队需要一层「上线前预测」。</li>
-        <li>金融、医疗等垂直不敢公开乱试，模拟用户是合规叙事入口之一。</li>
-        <li>实验室侧把 persona 当作训练与红队数据（如 NVIDIA Nemotron-Personas、腾讯 Persona Hub）。</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>市场怎么切</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>细分</th>
-            <th>典型问题</th>
-            <th>代表</th>
-            <th>商业形态</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>能力评测</td>
-            <td>模型能不能把任务做完</td>
-            <td>SWE-bench、WebArena、τ-bench</td>
-            <td>实验室与开源基准为主</td>
-          </tr>
-          <tr>
-            <td>Persona / 用户模拟评测</td>
-            <td>不同人用起来好不好、好不好感</td>
-            <td>MatrAIx、Blok、Uxia、Synthetic Users、Swarm、SimulatorArena</td>
-            <td>产品 / UX SaaS + 学术开源壳；近期创业融资相对集中</td>
-          </tr>
-          <tr>
-            <td>多智能体社会模拟</td>
-            <td>群体舆论、政策、传播怎么演化</td>
-            <td>Generative Agents、OASIS、AgentSociety、Artificial Societies</td>
-            <td>社科研究平台 + 企业传播 / 决策模拟</td>
-          </tr>
-        </tbody>
-      </table>
-      <p>MatrAIx 落在第二类，人格池规模又碰到第三类的边缘。若押「评测基础设施」，要确认买家是做 Agent 的产品团队还是做模型的实验室；若押「合成用户」，要盯数据授权与模拟到真人的保真度。</p>
-    </section>
-
-    <section>
-      <h2>开源与学术</h2>
-
-      <div class="card">
-        <h4 class="nm">Stanford Generative Agents（Smallville）</h4>
-        <span class="tag">开源研究</span><span class="tag">2023 UIST</span>
-        <p>用 LLM Agent 在类 Sims 沙盒里模拟 25 个角色的日程、记忆与社交，奠定「生成式 Agent 社会」范式。关键作者包括 Joon Sung Park、Joseph C. O’Brien、Carrie J. Cai（Google Research）、Meredith Ringel Morris（Google DeepMind）、Percy Liang、Michael S. Bernstein（Stanford）。</p>
-        <p><a href="https://arxiv.org/abs/2304.03442">论文</a></p>
-      </div>
-
-      <div class="card">
-        <h4 class="nm">腾讯 AI Lab · Persona Hub（Ge et al.）</h4>
-        <span class="tag">开源数据</span><span class="tag">合成训练</span>
-        <p>约 10.16 亿条从网页策展的 persona，主要用于大规模合成训练数据（数学题、指令、NPC 等），不是已验证的十亿在线用户产品评测。作者包括 Tao Ge、Xin Chan、Xiaoyang Wang、Dian Yu、Haitao Mi、Dong Yu（Tencent AI Lab Seattle）。论文 2024-06 首发，后续有修订。</p>
-        <p><a href="https://arxiv.org/abs/2406.20094">论文</a> · <a href="https://github.com/tencent-ailab/persona-hub">GitHub</a></p>
-      </div>
-
-      <div class="card">
-        <h4 class="nm">NVIDIA Nemotron-Personas</h4>
-        <span class="tag">开源数据</span><span class="tag">CC BY 4.0</span>
-        <p>按真实人口地理分布生成的多地区合成 persona；首发约 60 万（美国，2025-06），后续扩展多国，文档称集合达数千万级。主要用于模型训练、指令微调与安全红队。关键人包括 Yev Meyer、Dane Corneil（NVIDIA）；工具链来自并入 NVIDIA / NeMo 的 Gretel Data Designer。</p>
-        <p><a href="https://huggingface.co/blog/nvidia/nemotron-personas">介绍</a> · <a href="https://huggingface.co/collections/nvidia/nemotron-personas">数据集合集</a></p>
-      </div>
-
-      <div class="card">
-        <h4 class="nm">OASIS（CAMEL-AI）</h4>
-        <span class="tag">开源</span><span class="tag">社会模拟</span>
-        <p>可扩展至约百万级 Agent 的社交媒体模拟器（类 X / Reddit），研究信息传播与极化等。论文作者包括 Ziyi Yang、Guohao Li 等。Guohao Li 另创办 Eigent AI（多 Agent 基础设施）；OASIS 本身以开源研究呈现。</p>
-        <p><a href="https://oasis.camel-ai.org/">站点</a> · <a href="https://arxiv.org/html/2411.11581">论文</a></p>
-      </div>
-
-      <div class="card">
-        <h4 class="nm">AgentSociety（清华 FIB Lab 等）</h4>
-        <span class="tag">开源</span><span class="tag">社会模拟</span>
-        <p>大规模 LLM 社会模拟，带情感、需求、认知与城市 / 经济 / 社交环境；论文称可支撑逾 1 万 Agent、约 500 万次交互量级实验，用于极化、UBI、灾害等社科实验。通讯作者 Yong Li（清华大学）；一作含 Jinghua Piao 等。</p>
-        <p><a href="https://arxiv.org/abs/2502.08691">论文</a> · <a href="https://agentsociety.fiblab.net/">站点</a></p>
-      </div>
-
-      <div class="card">
-        <h4 class="nm">Microsoft · SimulatorArena</h4>
-        <span class="tag">开源基准</span><span class="tag">EMNLP 2025</span>
-        <p>专门回答「用户模拟器能不能当真人多轮评测的代理」：909 段真人–LLM 对话（数学辅导 + 文档写作）；带用户画像的模拟器与真人评分 Spearman ρ 约 0.7；成本称不到真人约 3%。作者包括 Yao Dou、Alan Ritter、Wei Xu（Georgia Tech）以及 Michel Galley、Baolin Peng、Jianfeng Gao 等（Microsoft）。</p>
-        <p><a href="https://arxiv.org/abs/2510.05444">论文</a> · <a href="https://github.com/microsoft/SimulatorArena">GitHub</a></p>
-      </div>
-
-      <div class="card">
-        <h4 class="nm">MatrAIx</h4>
-        <span class="tag">开源 + 初创</span><span class="tag">2026-08 论文</span>
-        <p>宣称约 83 亿条 persona 记录，配合问卷 / 聊天 / 网页 / App 四类环境做 AI 与数字产品的模拟用户评测；公开约 100 万条 coreset。论文 2026-08-04 上 arXiv；公司 LinkedIn 写 2026 年 Mountain View。CEO / Co-founder Xiaomin Li（Harvard 应用数学博士；履历含 DeepMind、Microsoft 相关岗位）；COO / Co-founder Yuexing Hao（Cornell 博士、MIT 相关履历）。</p>
-        <p><a href="https://matraix.ai/">官网</a> · <a href="https://arxiv.org/abs/2608.04205">论文</a> · <a href="https://github.com/MatrAIx-ai/MatrAIx-Persona-8B">GitHub</a></p>
-      </div>
-    </section>
-
-    <section>
-      <h2>商业公司</h2>
-
-      <div class="card">
-        <h4 class="nm">Synthetic Users</h4>
-        <span class="tag">SaaS</span><span class="tag">2022</span>
-        <p>用多 Agent 与 OCEAN 等人格做合成定性研究（问题探索、概念与文案测试）；自称发现协作者而非替代真人，官网写 synthetic–organic 对齐率约 85–92%，并称 SOC 2。创始人 Kwame Ferreira、Hugo Alves。有 Comcast NBCUniversal LIFT Labs、Urban Innovation Fund 等投资痕迹；公开轮次金额未在可靠信源核实到具体数字。</p>
-        <p><a href="https://www.syntheticusers.com/">官网</a></p>
-      </div>
-
-      <div class="card">
-        <h4 class="nm">Blok</h4>
-        <span class="tag">SaaS</span><span class="tag">合计 $7.5M</span>
-        <p>从 Amplitude / Mixpanel / Segment 事件日志建行为 persona，对 Figma 设计跑模拟并给实验洞察。2024 创立，2025-07 出 stealth。Seed $5M 由 MaC Venture Capital 领投；pre-seed 有 Protagonist 等。创始人 Tom Charman、Olivia Higgs。早期 waitlist 偏金融与医疗。</p>
-        <p><a href="https://techcrunch.com/2025/07/09/blok-is-using-ai-persons-to-simulate-real-world-app-usage/">TechCrunch</a></p>
-      </div>
-
-      <div class="card">
-        <h4 class="nm">Uxia（巴塞罗那）</h4>
-        <span class="tag">SaaS</span><span class="tag">Pre-seed ~€1M</span>
-        <p>用 AI 合成用户测原型可用性。2025 创立；约 €750k 股权 + Enisa 贷款预期凑近 €1M。Abac Nest 领投，Encomenda、UserZoom 联合创始人 Javier Darriba 等参投。CEO Borja Díaz-Roig（前 TransferGo Product Growth）；CTO Víctor Perdiguer。</p>
-        <p><a href="https://www.eu-startups.com/2025/11/spanish-startup-uxia-lands-e1-million-to-develop-synthetic-user-technology-for-product-teams/">EU-Startups</a> · <a href="https://www.uxia.app/blog/announcing-our-pre-seed-investment-round">官方公告</a></p>
-      </div>
-
-      <div class="card">
-        <h4 class="nm">Artificial Societies（伦敦，societies.io）</h4>
-        <span class="tag">YC W25</span><span class="tag">约 $5.35M</span>
-        <p>行为科学 + 大规模合成受众，测传播、危机、市场与政策反应。2024-10 联合创立；pre-seed 约 $2M（Kindred Capital 领投）+ seed 约 $3.35M（Point72 Ventures 领投，含 YC 等）。CEO James He（剑桥计算社科背景）；CPO Patrick Sharpe（行为科学 / Swiss Re iptiQ 等）。自称 250 万+ AI personas，产品名 Radiant。</p>
-        <p><a href="https://www.ycombinator.com/companies/artificial-societies">YC</a> · <a href="https://www.finsmes.com/2025/08/artificial-societies-raises-5-35m-in-funding.html">FinSMEs</a></p>
-      </div>
-
-      <div class="card">
-        <h4 class="nm">Swarm（useswarm.co）</h4>
-        <span class="tag">SaaS</span><span class="tag">&gt;$100K</span>
-        <p>在真实浏览器里跑 AI persona，测 web / mobile 流程并找卡点与流失。创始人 Aryan Aladar（UNC）；Chapel Hill 创立、旧金山运营。投资方公开信息含 Afore、LeapYear、Launch Chapel Hill；2026-02 公开发布。</p>
-        <p><a href="https://www.useswarm.co/">官网</a> · <a href="https://www.useswarm.co/blog/why-i-started-swarm">创始说明</a></p>
-      </div>
-    </section>
-
-    <section>
-      <h2>已核实融资信号</h2>
-      <ul>
-        <li>Blok：合计约 $7.5M（含 MaC 领投的 seed $5M）。</li>
-        <li>Artificial Societies：合计约 $5.35M（Kindred + Point72 / YC 等）。</li>
-        <li>Uxia：Pre-seed 近 €1M。</li>
-        <li>Swarm：公开披露超过 $100K。</li>
-      </ul>
-      <p>Synthetic Users 有机构投资痕迹，但公开轮次金额未核到可靠数字，此处不写估值。</p>
-    </section>
-
-    <section>
-      <h2>风险与边界</h2>
-      <ul>
-        <li><strong>Sim-to-real 差距。</strong> SimulatorArena 显示：无画像的模拟器偏啰嗦礼貌；有画像后与真人评分相关性升至约 0.7，仍非 1.0。MatrAIx 也强调用途适配与真人收尾。ACL 研究「Quantifying the Persona Effect」称 persona 变量对主观标注方差的解释往往不到 10%。</li>
-        <li><strong>人格数量营销通胀。</strong> Persona Hub「10 亿」、MatrAIx「83 亿」多为记录池或策展规模，不等于同时在线的评测用户数；尽调宜按「可抽样画像库」理解。</li>
-        <li><strong>数据权利。</strong> 公开 coreset / CC 许可与完整库商用权可能分离（例如 MatrAIx 公开约 100 万条）。</li>
-        <li><strong>大厂开源挤压。</strong> NVIDIA、微软、腾讯与高校持续放出数据与基准，纯「人格库」难构成长期护城河；差异化更可能落在工作流嵌入（设计工具、分析埋点、合规交付）与行业垂直。</li>
-        <li><strong>买方分散。</strong> UX 研究预算、Agent 评测预算、企业传播研究预算不是同一采购口袋。</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>投资视角</h2>
-      <p>赛道本身成立：Agent 产品化叠加 UX 成本，模拟用户是自然的中间层；2025–2026 已有 Blok、Artificial Societies、Uxia、Swarm 等真金白银。</p>
-      <p>短期更像两条生意：「产品研发加速器 SaaS」和「企业传播 / 决策模拟」。「全球人口级评测基础设施」叙事仍偏学术包装。</p>
-      <p>尽调优先问：谁在付钱、是否有 ARR 或设计伙伴、有没有对照真人的 sim-to-real 实验、完整库授权怎么卖、是否依赖单一基础模型 API、与 Amplitude / Figma / CI 的嵌入有多深。</p>
-      <p>对标 MatrAIx：论文与开源扎实、履历亮，但公司极新，更接近「顶校开源项目挂壳」；需用客户、权利与保真度压营销数字。</p>
-    </section>
-
-    <section>
-      <h2>延伸阅读</h2>
-      <ul>
-        <li><a href="https://arxiv.org/abs/2304.03442">Generative Agents</a></li>
-        <li><a href="https://arxiv.org/abs/2406.20094">Persona Hub</a></li>
-        <li><a href="https://huggingface.co/blog/nvidia/nemotron-personas">Nemotron-Personas</a></li>
-        <li><a href="https://arxiv.org/abs/2510.05444">SimulatorArena</a></li>
-        <li><a href="https://arxiv.org/abs/2608.04205">MatrAIx</a></li>
-        <li><a href="https://aclanthology.org/2024.acl-long.554/">Quantifying the Persona Effect</a></li>
-        <li><a href="https://techcrunch.com/2025/07/09/blok-is-using-ai-persons-to-simulate-real-world-app-usage/">Blok · TechCrunch</a></li>
-        <li><a href="https://www.ycombinator.com/companies/artificial-societies">Artificial Societies · YC</a></li>
-      </ul>
-    </section>
-
-    <footer class="foot">终稿 · 仅含核实后的事实与出处</footer>
-  </main>
-  <script src="https://psylch.github.io/assets/report.js"></script>
-</body>
-</html>
+<body class="report"><main class="wide">
+<a class="back" href="https://psylch.github.io/">← psylch</a>
+<div class="meta">SOURCING · 2026-10-20</div>
+<h1>AI 用户模拟 / 合成用户赛道 · 公司清单</h1>
+<p class="lead">斯坦福小镇团队创立的 Simile 已到 B 轮、估值 20 亿美元，是赛道龙头；Aaru 以 A 轮名义 10 亿美元估值紧随其后。其余多为种子轮。语音 / 对话 Agent 的模拟测试（Coval 等）是增长最快的分支。中国目前以「AI 访谈真人」（Trooly、觅深）为主，真正的人群模拟多停留在开源项目（MiroFish、AgentSociety）。</p>
+<div class="stats"><div class="stat"><b>35</b><span>公司 / 项目</span></div><div class="stat"><b>5</b><span>细分方向</span></div><div class="stat"><b>20 亿美元</b><span>最高估值（Simile）</span></div></div>
+<div class="callout info">金额为公开披露口径，截至 2026-10-20。未披露项标「公开信息未披露」；只有一个信源的数字标 <span class="tag">单一来源</span>。</div>
+<h2>总表</h2>
+<table><thead><tr><th>公司</th><th>方向</th><th>阶段</th><th>累计融资</th><th>领投方</th></tr></thead><tbody>
+<tr><td><a href="#c1">Simile</a></td><td>市场调研/消费者模拟</td><td>B 轮</td><td>3 亿美元+</td><td>Index；Greenoaks</td></tr>
+<tr><td><a href="#c2">Aaru</a></td><td>市场调研/消费者模拟</td><td>A 轮</td><td>A 轮 8,000 万美元</td><td>Redpoint</td></tr>
+<tr><td><a href="#c3">Artificial Societies</a></td><td>市场调研/消费者模拟</td><td>种子轮</td><td>535 万美元</td><td>Kindred；Point72 Ventures</td></tr>
+<tr><td><a href="#c4">Electric Twin</a></td><td>市场调研/消费者模拟</td><td>种子轮</td><td>1,400 万美元</td><td>Atomico</td></tr>
+<tr><td><a href="#c5">Evidenza</a></td><td>市场调研/消费者模拟</td><td>未见外部融资</td><td>—</td><td>—</td></tr>
+<tr><td><a href="#c6">Brox AI</a></td><td>市场调研/消费者模拟</td><td>种子 + 战略轮</td><td>190 万美元+</td><td>公开信息未披露</td></tr>
+<tr><td><a href="#c7">Native AI</a></td><td>市场调研/消费者模拟</td><td>种子轮（A 轮待证实）</td><td>840 万美元（LinkedIn 口径）</td><td>JumpStart；Ivy Ventures</td></tr>
+<tr><td><a href="#c8">Subconscious.ai</a></td><td>市场调研/消费者模拟</td><td>Pre-seed</td><td>公开信息未披露</td><td>PivotNorth</td></tr>
+<tr><td><a href="#c9">Lakmoos</a></td><td>市场调研/消费者模拟</td><td>Pre-seed</td><td>30 万欧元</td><td>Presto Ventures</td></tr>
+<tr><td><a href="#c10">Expected Parrot</a></td><td>市场调研/消费者模拟</td><td>种子 / Pre-seed</td><td>约 50 万美元</td><td>YC 等</td></tr>
+<tr><td><a href="#c11">Ask Rally</a></td><td>市场调研/消费者模拟</td><td>未见外部融资</td><td>—</td><td>—</td></tr>
+<tr><td><a href="#c12">Yabble</a></td><td>市场调研/消费者模拟</td><td>已被 YouGov 收购</td><td>—</td><td>—</td></tr>
+<tr><td><a href="#c13">Toluna HarmonAIze</a></td><td>市场调研/消费者模拟</td><td>大公司产品线</td><td>—</td><td>—</td></tr>
+<tr><td><a href="#c14">humans&amp;</a></td><td>市场调研/消费者模拟</td><td>种子轮</td><td>4.8 亿美元</td><td>SV Angel；Georges Harik</td></tr>
+<tr><td><a href="#c15">Mirror Particle</a></td><td>市场调研/消费者模拟</td><td>天使轮</td><td>公开信息未披露</td><td>公开信息未披露</td></tr>
+<tr><td><a href="#c16">Intellicia</a></td><td>市场调研/消费者模拟</td><td>Pre-A</td><td>约 250 万美元（Pre-A）</td><td>Kakao Ventures</td></tr>
+<tr><td><a href="#c17">Blok</a></td><td>产品UX合成用户测试</td><td>种子轮</td><td>750 万美元</td><td>Protagonist；MaC</td></tr>
+<tr><td><a href="#c18">Synthetic Users</a></td><td>产品UX合成用户测试</td><td>加速器轮</td><td>公开信息未披露</td><td>Comcast LIFT Labs</td></tr>
+<tr><td><a href="#c19">Uxia</a></td><td>产品UX合成用户测试</td><td>Pre-seed</td><td>约 100 万欧元</td><td>Abac Nest</td></tr>
+<tr><td><a href="#c20">UserApproved AI</a></td><td>产品UX合成用户测试</td><td>公开信息未披露</td><td>公开信息未披露</td><td>公开信息未披露</td></tr>
+<tr><td><a href="#c21">Coval</a></td><td>AI Agent 模拟用户测试</td><td>A 轮</td><td>3,100 万美元</td><td>MaC；Norwest</td></tr>
+<tr><td><a href="#c22">Hamming AI</a></td><td>AI Agent 模拟用户测试</td><td>种子轮</td><td>380 万美元+</td><td>Mischief</td></tr>
+<tr><td><a href="#c23">Cekura</a></td><td>AI Agent 模拟用户测试</td><td>种子轮</td><td>240 万美元</td><td>YC</td></tr>
+<tr><td><a href="#c24">Bluejay</a></td><td>AI Agent 模拟用户测试</td><td>种子轮</td><td>400 万美元</td><td>Floodgate</td></tr>
+<tr><td><a href="#c25">Collinear AI</a></td><td>AI Agent 模拟用户测试</td><td>种子轮</td><td>约 1,000 万美元 <span class="tag">单一来源</span></td><td>公开信息未披露</td></tr>
+<tr><td><a href="#c26">Fundamental Research Labs</a></td><td>Agent 社会/研究基建</td><td>A 轮</td><td>约 4,400 万美元</td><td>First Spark/Patron；Prosus</td></tr>
+<tr><td><a href="#c27">MatrAIx</a></td><td>Agent 社会/研究基建</td><td>公开信息未披露</td><td>公开信息未披露</td><td>公开信息未披露</td></tr>
+<tr><td><a href="#c28">Eigent AI</a></td><td>Agent 社会/研究基建</td><td>早期</td><td>公开信息未披露</td><td>公开信息未披露</td></tr>
+<tr><td><a href="#c29">Trooly.AI</a></td><td>中国</td><td>种子轮（多轮）</td><td>近 2,000 万美元</td><td>蓝驰创投</td></tr>
+<tr><td><a href="#c30">Mizzen Insight</a></td><td>中国</td><td>天使+轮</td><td>近千万美元+</td><td>红杉中国种子基金</td></tr>
+<tr><td><a href="#c31">MiroFish</a></td><td>中国</td><td>孵化</td><td>3,000 万元人民币</td><td>盛大 / 陈天桥</td></tr>
+<tr><td><a href="#c32">atypica.AI</a></td><td>中国</td><td>母公司特赞孵化</td><td>未单独融资</td><td>—</td></tr>
+<tr><td><a href="#c33">硅基样本</a></td><td>中国</td><td>公开信息未披露</td><td>公开信息未披露</td><td>公开信息未披露</td></tr>
+<tr><td><a href="#c34">ValidFlow</a></td><td>中国</td><td>寻求天使轮</td><td>公开信息未披露</td><td>—</td></tr>
+<tr><td><a href="#c35">AgentSociety</a></td><td>中国</td><td>学术项目</td><td>—</td><td>—</td></tr>
+</tbody></table>
+<h2>分方向公司详情</h2>
+<div class="tabs" data-tabs><button class="on" data-t="t0">市场调研/消费者模拟</button><button data-t="t1">产品UX合成用户测试</button><button data-t="t2">AI Agent 模拟用户测试</button><button data-t="t3">Agent 社会/研究基建</button><button data-t="t4">中国</button></div>
+<section id="t0" class="panel on">
+<div class="item" id="c1"><div class="nm">Simile（美国 Palo Alto） <span class="tag">B 轮</span></div>
+<p><span class="lbl">做什么</span>用真人深访数据构建「agentic twins」，模拟消费者、员工、选民对产品、营销、政策的反应。斯坦福小镇（Generative Agents / Smallville）团队创立。</p>
+<p><span class="lbl">差异化</span>微观到宏观路线，个体以 2 小时深访 + 问卷为底（1,052 人研究），与 Gallup 合作扩到数百万人；自研人类行为基础模型 + 预测每次模拟准确度的 confidence model；自称准确率 85%–99%。</p>
+<p><span class="lbl">已知客户</span>CVS Health（40 万 twins 研究用药依从）、Deloitte、Wealthfront、Gallup；按样本规模定价。</p>
+<p><span class="lbl">核心人物</span></p>
+<ul><li>Joon Sung Park（CEO）：斯坦福 CS 博士，Smallville / Generative Agents 论文第一作者，入行前是油画画家。</li><li>Michael Bernstein（联创）：斯坦福 CS 教授（HCI），Park 博士导师。</li><li>Percy Liang（联创）：斯坦福 CS 教授，CRFM 主任，参与提出「foundation model」概念。</li><li>Lainie Yallen（联创 / COO）：前 Hebbia 产品与 GTM 负责人，Valence 临时 COO，联创 TriplePlay（被 Roblox 收购），BCG；McGill BCom。</li></ul>
+<p><span class="lbl">融资（累计约 3 亿美元+）</span></p>
+<ul><li>2026-02-12 A 轮 1 亿美元，Index Ventures 领投；Hanabi、A*、Bain Capital Ventures 参投；天使含李飞飞、Andrej Karpathy、Adam D'Angelo、Guillermo Rauch、Scott Belsky。</li><li>2026-07-30 B 轮 2 亿美元+，投后估值 20 亿美元，Greenoaks 与 Index 共同领投；Hanabi、BCV、A*、Factory、CVS Health Ventures、Definition 参投。</li><li>当前阶段：B 轮；团队 50+ 人；称上线 5 个月收入增长 5 倍（绝对收入未披露）。</li></ul>
+<p class="sub"><span class="lbl">来源</span><a href="https://www.simile.com/blog/series-b">simile.com</a> · <a href="https://www.simile.com/blog/the-simulation-company">simile.com</a> · <a href="https://techcrunch.com/2026/07/30/synthetic-user-startup-simile-raises-200m-at-2b-valuation-5-months-after-100m-series-a/">techcrunch.com</a> · <a href="https://www.indexventures.com/perspectives/simulating-society-at-scale-our-investment-in-similes-200m-series-b/">indexventures.com</a> · <a href="https://siliconangle.com/2026/02/12/ai-digital-twin-startup-simile-raises-100m-funding/">siliconangle.com</a> · <a href="https://app.dealroom.co/news/note/simile-raises-200m-series-b-at-2b-valuation-to-survey-ai-twins-of-consumers">dealroom.co</a> · <a href="https://slush.org/2026-speakers/lainie-yallen">slush.org</a></p></div>
+<div class="item" id="c2"><div class="nm">Aaru（美国 New York） <span class="tag">A 轮</span></div>
+<p><span class="lbl">做什么</span>用大规模 AI agent 合成人口，预测人群对产品、定价、政策、选举的反应。</p>
+<p><span class="lbl">差异化</span>宏观到个体路线，用人口统计 + 行为 + 结果数据锚定群体；与 EY 合作报告称 1 天复现原需 6 个月的财富研究，中位相关 0.90。</p>
+<p><span class="lbl">已知客户</span>EY（为十几家客户使用）、Accenture（亦为投资方）、Bayer、Spindrift；政治民调场景。</p>
+<p><span class="lbl">核心人物</span></p>
+<ul><li>Cameron Fink（联创）：18 岁创业，在 Dartmouth 只待一晚即退学。</li><li>Ned Koh（联创）：19 岁创业，在 Harvard 两周后退学。</li><li>John Kessler（联创 / CTO）：15 岁加入，此前在 MIT City Science Lab 做模拟研究。</li><li>学历之外的详细工作经历：公开信息未披露。</li></ul>
+<p><span class="lbl">融资</span></p>
+<ul><li>Pre-seed / Seed：金额未披露；A*、Abstract Ventures、Felicis、General Catalyst、Accenture Ventures、Z Fellows（PitchBook 口径）。</li><li>A 轮 8,000 万美元，Redpoint 领投（2025-12 传出，Redpoint 2026-04-22 官宣）；分层估值，名义 10 亿美元，混合估值低于 10 亿。</li><li>当前阶段：A 轮；2025-12 时 ARR 低于 1,000 万美元（TechCrunch 信源）。</li><li>成立：2024-03。</li></ul>
+<p class="sub"><span class="lbl">来源</span><a href="https://www.redpoint.com/content-hub/written/a-step-towards-predicting-the-future-our-investment-in-aaru-/">redpoint.com</a> · <a href="https://techcrunch.com/2025/12/05/ai-synthetic-research-startup-aaru-raised-a-series-a-at-a-1b-headline-valuation/">techcrunch.com</a> · <a href="https://aaru.com/about">aaru.com</a> · <a href="https://archive.is/EEwQf">archive.is</a> （WSJ）</p></div>
+<div class="item" id="c3"><div class="nm">Artificial Societies（英国 London，YC W25） <span class="tag">种子轮</span></div>
+<p><span class="lbl">做什么</span>模拟「人群 + 社交网络」，测试传播、危机公关、新市场、投资人和公众对政策的反应。</p>
+<p><span class="lbl">差异化</span>模拟观点在相连人群中如何扩散（网络效应），不只是单个 persona 问卷；能模拟难触达的专业人群；团队写过首篇大规模 LLM 社会论文（3.3 万 agent）。</p>
+<p><span class="lbl">已知客户</span>企业与「主权」客户（政府）；Forbes 提到已有客户，具体名单公开信息未披露。</p>
+<p><span class="lbl">核心人物</span></p>
+<ul><li>James He（CEO）：剑桥计算社会科学背景；前 Yonder（信用卡创业公司）搭建全部借贷 ML 系统；主导 3.3 万 agent 社会研究论文。</li><li>Patrick Sharpe（CPO）：曾在 ReAssure、Swiss Re 旗下 iptiQ 做行为实验和客户研究。</li><li>Tom Whittle（CTO）：咨询出身，后自学编程进入成长期创业公司。</li><li>Felix Wallis（研究负责人）：牛津社会数据科学 MSc，3.3 万 agent 论文合著者。</li></ul>
+<p><span class="lbl">融资（累计 535 万美元）</span></p>
+<ul><li>Pre-seed：Kindred Capital 领投（金额未单独披露）。</li><li>Seed：Point72 Ventures 领投；YC、Pioneer Fund、Ventures Together、Icehouse、Multimodal、Carya 等参投；Sequoia Scout、Figma、Prolific、DeepMind 相关天使约 200 万美元。2025-08 官宣。</li><li>当前阶段：种子轮。</li></ul>
+<p class="sub"><span class="lbl">来源</span><a href="https://www.ycombinator.com/companies/artificial-societies">ycombinator.com</a> · <a href="https://societies.ai/company">societies.ai</a> · <a href="https://www.businessinsider.com/artificial-societies-seed-funding-pitch-deck-y-combinator-2025-8">businessinsider.com</a> · <a href="https://www.linkedin.com/posts/james-k-he_artificial-societies-has-raised-53m-in-activity-7366424243254874113-hRKQ">linkedin.com</a></p></div>
+<div class="item" id="c4"><div class="nm">Electric Twin（英国 London） <span class="tag">种子轮</span></div>
+<p><span class="lbl">做什么</span>合成受众平台，用真实调查数据 + LLM + 社会科学模型，预测人群对信息、产品、定价的反应。</p>
+<p><span class="lbl">差异化</span>强调科学验证，与 LSE 教授 Michael Muthukrishna 合作；称跑过近 4 万次评估、覆盖 155 国、准确率 95%。</p>
+<p><span class="lbl">已知客户</span>企业与公共部门，具体名单公开信息未披露。</p>
+<p><span class="lbl">核心人物</span></p>
+<ul><li>Alex Cooper（CEO）：前军官，疫情期间在唐宁街 10 号主导英国新冠大规模检测。</li><li>Dr Ben Warner（联创）：疫情期间任首相数字与数据首席顾问。</li><li>教育背景：公开信息未披露。</li></ul>
+<p><span class="lbl">融资（累计 1,400 万美元）</span></p>
+<ul><li>Pre-seed 400 万美元（此前未公开，投资方未披露）。</li><li>Seed 1,000 万美元，Atomico 领投；LocalGlobe、Mercuri、Samos 参投；天使含 Marc Andreessen、Cal Henderson、Eric Salama。2026-02-11。</li><li>当前阶段：种子轮。</li></ul>
+<p class="sub"><span class="lbl">来源</span><a href="https://www.electrictwin.com/blog/electric-twin-announcing-14m-in-funding">electrictwin.com</a> · <a href="https://tech.eu/2026/02/12/electric-twin-expands-ai-audience-platform-with-14m-round/">tech.eu</a> · <a href="https://www.mercuri.vc/blog/electric-twin">mercuri.vc</a> · <a href="https://atomico.com/insights/our-investment-in-electric-twin-unlocking-the-power-of-synthetic-audiences">atomico.com</a></p></div>
+<div class="item" id="c5"><div class="nm">Evidenza（英国 / 美国） <span class="tag">未见外部融资</span></div>
+<p><span class="lbl">做什么</span>生成 B2B 买家的 AI 副本，做 B2B 市场研究并输出营销规划。</p>
+<p><span class="lbl">差异化</span>专做 B2B（难招募的企业决策者），结论面向 CFO 能看懂的营销预算论证。</p>
+<p><span class="lbl">已知客户</span>公开信息未披露（Adweek 有报道案例）。</p>
+<p><span class="lbl">核心人物</span>Peter Weinberg、Jon Lombardo（二人在 LinkedIn 共事约 10 年，联合创立 LinkedIn B2B Institute，2024-01 离职创业）、Brian Watroba。详细学历：公开信息未披露。<a href="https://www.evidenza.ai/team/peter-weinberg">出处</a> <a href="https://www.linkedin.com/posts/jonlombardo_i-left-linkedin-last-week-after-10314159-activity-7150845643140300801-4Qpo">出处</a></p>
+<p><span class="lbl">融资</span>公开资料显示未进行外部融资（Tracxn / Prospeo 口径）。</p>
+<p class="sub"><span class="lbl">来源</span><a href="https://www.evidenza.ai/about">evidenza.ai</a> · <a href="https://www.adweek.com/brand-marketing/can-ai-replace-humans-for-market-research-this-firm-is-doing-it/">adweek.com</a> · <a href="https://tracxn.com/d/companies/evidenza/__AhyC8dSmM6Y1Mtacpq7KzUuoHBvHTlzeDkQQ1rrsbl8">tracxn.com</a></p></div>
+<div class="item" id="c6"><div class="nm">Brox AI（美国） <span class="tag">种子 + 战略轮</span></div>
+<p><span class="lbl">做什么</span>用真实消费者经授权的深度访谈做 1:1 数字孪生，供企业做概念测试和情景推演。</p>
+<p><span class="lbl">差异化</span>数据来自自建的专有受访者（称 6 万名），不是纯合成。</p>
+<p><span class="lbl">已知客户</span>企业研究部门，具体名单公开信息未披露；称一年收入增长 10 倍。</p>
+<p><span class="lbl">核心人物</span>Hamish Brocklebank、Durgé Seerden（均出自 YouGov Signal）。</p>
+<p><span class="lbl">融资</span></p>
+<ul><li>2023-10 种子 190 万美元。</li><li>后续战略轮：金额未披露，Florida Funders、MaxiTech 等参与。</li><li>投资方含 Scribble、Wonder、Vela、Firestreak、Incubate。</li></ul>
+<p class="sub"><span class="lbl">来源</span><a href="https://brox.ai/">brox.ai</a> · <a href="https://www.research-live.com/article/news/broxai_raises_$19m_in_funding_round/id/5117793">research-live.com</a> · <a href="https://maxitech.com/insight/investing-in-brox">maxitech.com</a></p></div>
+<div class="item" id="c7"><div class="nm">Native AI（美国） <span class="tag">种子轮（A 轮待证实）</span></div>
+<p><span class="lbl">做什么</span>消费者数字孪生，做合成消费者研究。</p>
+<p><span class="lbl">差异化</span>公开信息有限。</p>
+<p><span class="lbl">已知客户</span>公开信息未披露。</p>
+<p><span class="lbl">核心人物</span>公开信息未披露。</p>
+<p><span class="lbl">融资</span></p>
+<ul><li>2023-04 种子 350 万美元，JumpStart Ventures、Ivy Ventures 领投。</li><li>LinkedIn 标累计 840 万美元。</li><li><span class="tag">单一来源</span> 另有报道称 2026-03 A 轮 3,100 万美元，未获其他信源证实。</li></ul>
+<p class="sub"><span class="lbl">来源</span><a href="https://www.research-live.com/article/news/native_ai_completes_%2435m_funding_round/id/5111102">research-live.com</a> · <a href="https://indexed.vc/companies/native-ai">indexed.vc</a></p></div>
+<div class="item" id="c8"><div class="nm">Subconscious.ai（美国） <span class="tag">Pre-seed</span></div>
+<p><span class="lbl">做什么</span>用行为科学 + 因果实验（conjoint 类）模拟人群决策的市场研究。</p>
+<p><span class="lbl">差异化</span>主打因果推断而非问卷复述。</p>
+<p><span class="lbl">已知客户</span>公开信息未披露。</p>
+<p><span class="lbl">核心人物</span>Avi Yashchin（创始人 / CEO），详细履历公开信息未披露。</p>
+<p><span class="lbl">融资</span></p>
+<ul><li>Pre-seed，PivotNorth Capital 领投，2024-10-30，金额未披露。</li><li>其他投资方：Davidovs Venture Collective、spARK Labs（ARK Invest）、Geek Ventures、Endless Frontier Labs、芝大 Polsky Center。</li></ul>
+<p class="sub"><span class="lbl">来源</span><a href="https://subconscious.ai/team">subconscious.ai</a> · <a href="https://www.crunchbase.com/funding_round/subconscious-ai-pre-seed--ba3e880b">crunchbase.com</a> · <a href="https://polsky.uchicago.edu/2023/11/15/meet-the-transform-cohort-2-startups-subconciousai/">polsky.uchicago.edu</a></p></div>
+<div class="item" id="c9"><div class="nm">Lakmoos（捷克 Prague） <span class="tag">Pre-seed</span></div>
+<p><span class="lbl">做什么</span>合成受访者，模拟目标人群决策，做即时市场研究。</p>
+<p><span class="lbl">差异化</span>欧洲本地市场与合规定位。</p>
+<p><span class="lbl">已知客户</span>公开信息未披露。</p>
+<p><span class="lbl">核心人物</span>Kamila Zahradníčková（CEO）、Jan Polišenský（CTO）、Roman Konečný（CSO）；2023 年成立。</p>
+<p><span class="lbl">融资</span>2024-03 Pre-seed 30 万欧元，Presto Ventures 领投。</p>
+<p class="sub"><span class="lbl">来源</span><a href="https://tech.eu/2024/03/05/lakmoos-raises-eur300k-for-ai-models-that-simulate-target-group-decisions/">tech.eu</a></p></div>
+<div class="item" id="c10"><div class="nm">Expected Parrot（美国，YC F25） <span class="tag">种子 / Pre-seed</span></div>
+<p><span class="lbl">做什么</span>开源 EDSL 工具，用 AI agent 模拟受访者做调研，并与真人调研结合。</p>
+<p><span class="lbl">差异化</span>学术派，开源工具链，面向研究者和企业。</p>
+<p><span class="lbl">已知客户</span>公开信息未披露。</p>
+<p><span class="lbl">核心人物</span>John Horton（联创 / CTO），MIT Sloan 教授，「Homo Silicus」LLM 模拟经济人论文作者。</p>
+<p><span class="lbl">融资</span></p>
+<ul><li>2025-12 约 50 万美元种子 / Pre-seed（CB Insights 口径）。</li><li>投资方：YC、Pioneer Fund、Rebel Fund、gumi（日本上市公司，2025-12-18 公告）、Bloomberg Beta。</li></ul>
+<p class="sub"><span class="lbl">来源</span><a href="https://www.ycombinator.com/companies/expected-parrot">ycombinator.com</a> · <a href="https://expectedparrot.com/company">expectedparrot.com</a> · <a href="https://www.cbinsights.com/company/expectedparrot/financials">cbinsights.com</a></p></div>
+<div class="item" id="c11"><div class="nm">Ask Rally（英国 / 美国） <span class="tag">未见外部融资</span></div>
+<p><span class="lbl">做什么</span>自助式合成受众 / 虚拟焦点小组，persona 可用自有调研数据校准。</p>
+<p><span class="lbl">差异化</span>低价自助，面向营销人员。</p>
+<p><span class="lbl">已知客户</span>公开信息未披露。</p>
+<p><span class="lbl">核心人物</span>Mike Taylor（CEO / 联创），《Prompt Engineering for Generative AI》（O'Reilly）作者，前增长营销机构 Ladder（约 50 人）联创。<a href="https://askrally.com/about">出处</a> <a href="https://www.oreilly.com/people/mike-taylor/">出处</a></p>
+<p><span class="lbl">融资</span>Dealroom 显示无已知外部融资。</p>
+<p class="sub"><span class="lbl">来源</span><a href="https://askrally.com/about">askrally.com</a> · <a href="https://app.dealroom.co/companies/rally">dealroom.co</a></p></div>
+<div class="item" id="c12"><div class="nm">Yabble（新西兰 → 被 YouGov 收购） <span class="tag">已被 YouGov 收购</span></div>
+<p><span class="lbl">做什么</span>Virtual Audiences，用公开 + 专有数据生成主题 AI persona。</p>
+<p><span class="lbl">差异化</span>被传统调研巨头收购后，可与真实面板数据结合。</p>
+<p><span class="lbl">客户</span>YouGov 客户体系。</p>
+<p><span class="lbl">融资 / 阶段</span>2024-08 被 YouGov 收购，收购金额公开信息未披露。</p>
+<p class="sub"><span class="lbl">来源</span><a href="https://yougov.com/articles/50596-yougov-acquires-yabble">yougov.com</a> · <a href="https://www.mrweb.com/drno/news37076.htm">mrweb.com</a></p></div>
+<div class="item" id="c13"><div class="nm">Toluna HarmonAIze（传统调研巨头产品线） <span class="tag">大公司产品线</span></div>
+<p><span class="lbl">做什么</span>合成受访者套件，用匿名化的自有面板数据构建个体化合成受访者。</p>
+<p><span class="lbl">差异化</span>背靠自有大面板数据；是传统调研公司的防守型产品。</p>
+<p><span class="lbl">融资</span>Toluna 内部产品，不单独融资。</p>
+<p class="sub"><span class="lbl">来源</span><a href="https://tolunacorporate.com/toluna-harmonaize-launches-transforming-market-research-with-advanced-synthetic-data-solutions/">tolunacorporate.com</a></p></div>
+<div class="item" id="c14"><div class="nm">humans&amp;（美国，相邻赛道） <span class="tag">种子轮</span></div>
+<p><span class="lbl">做什么</span>「以人为中心」的 AI 实验室，做沟通与协作工具；有报道称其发布了人类行为模型 Persimmon <span class="tag">单一来源</span>。</p>
+<p><span class="lbl">核心人物</span>Andi Peng（前 Anthropic）、Eric Zelikman（前 xAI，斯坦福博士）、Georges Harik（Google 早期员工）、Yuchen He、Noah Goodman（斯坦福教授）。</p>
+<p><span class="lbl">融资</span>2026-01-20 种子轮 4.8 亿美元，估值 44.8 亿美元，SV Angel 与 Georges Harik 领投；Nvidia、Jeff Bezos、GV 等参投。</p>
+<p><span class="lbl">备注</span>不是纯用户模拟公司，作为大额相邻玩家列出。</p>
+<p class="sub"><span class="lbl">来源</span><a href="https://techcrunch.com/2026/01/20/humans-a-human-centric-ai-startup-founded-by-anthropic-xai-google-alums-raised-480m-seed-round/">techcrunch.com</a> · <a href="https://www.reuters.com/business/ai-startup-humans-raises-480-million-45-billion-valuation-seed-round-2026-01-20/">reuters.com</a></p></div>
+<div class="item" id="c15"><div class="nm">Mirror Particle（美国 San Francisco） <span class="tag">天使轮</span></div>
+<p><span class="lbl">做什么</span>从零训练「人类行为世界模型」，不走 LLM 角色扮演路线；入选 TechCrunch Disrupt 2026 Startup Battlefield 200。</p>
+<p><span class="lbl">差异化</span>基于纵向显性行为数据而非问卷。</p>
+<p><span class="lbl">已知客户</span>一家宠物食品品牌的包装测试（品牌名未公开）。</p>
+<p><span class="lbl">核心人物</span>Abhivyakti Ahuja（CEO，多伦多大学，前 Amazon Robotics）、Will Song、Thomson Yen（均为前 Amazon Robotics）。法律实体为 Aiphrodite AI Inc.。</p>
+<p><span class="lbl">融资</span><span class="tag">单一来源</span> 天使轮，金额与估值未披露。</p>
+<p class="sub"><span class="lbl">来源</span><a href="https://www.ic.work/article/mirror-particle-world-model-synthetic-consumers-reality-chec">ic.work</a></p></div>
+<div class="item" id="c16"><div class="nm">Intellicia（韩国，TheSurvey.ai） <span class="tag">Pre-A</span></div>
+<p><span class="lbl">做什么</span>用真实消费者数据生成合成消费者，回答问卷和访谈。</p>
+<p><span class="lbl">差异化</span>亚洲本地数据；计划 2026 Q4 上线全球 SaaS，2027 进入美国和日本。</p>
+<p><span class="lbl">已知客户</span>称已完成 14 家韩国大企业验证（名单未披露）。</p>
+<p><span class="lbl">核心人物</span>Baek Seung-guk（白承国，CEO），履历公开信息未披露。</p>
+<p><span class="lbl">融资</span></p>
+<ul><li>2025 种子轮，金额未披露。</li><li>2026-09 Pre-A 34 亿韩元（约 250 万美元），Kakao Ventures 领投；Murex Partners、Capstone Partners 参投。</li></ul>
+<p class="sub"><span class="lbl">来源</span><a href="https://www.kakao.vc/en/posts/ai-habseongsobija-gieob-intelrisia-kakaobenceoseu-rideuro-34eog-weon-gyumo-peuri-sirijeu-a-tuja-yuci">kakao.vc</a> · <a href="https://www.forbeskorea.co.kr/news/articleView.html?idxno=400967">forbeskorea.co.kr</a></p></div>
+</section>
+<section id="t1" class="panel">
+<div class="item" id="c17"><div class="nm">Blok（美国 / 英国） <span class="tag">种子轮</span></div>
+<p><span class="lbl">做什么</span>用接入产品事件数据的 AI persona 模拟用户使用 App，在上线前测试界面、onboarding 和功能改动。</p>
+<p><span class="lbl">差异化</span>用客户自己的埋点数据校准 persona，目标是把数周的 A/B 测试缩到数小时。</p>
+<p><span class="lbl">已知客户</span>公开信息未披露。</p>
+<p><span class="lbl">核心人物</span>Tom Charman（CEO，连续技术创业者，城市探索 App KOMPAS 联创）<a href="https://www.whatshotnow.net/interview-how-kompas-is-using-ai-to-improve-city-exploration/">出处</a>、Olivia Higgs（联创，曾与 Charman 一起做 VC 支持的创业公司）。教育背景：公开信息未披露。</p>
+<p><span class="lbl">融资（累计 750 万美元）</span></p>
+<ul><li>Pre-seed：Protagonist 领投，Rackhouse、Weekend Fund、Blank Ventures 参投。</li><li>Seed 500 万美元：MaC Venture Capital 领投，Correlation、Karman 参投；天使来自 Meta、Airbnb、Google 等。</li><li>2025-07-09 出 stealth。</li></ul>
+<p class="sub"><span class="lbl">来源</span><a href="https://techcrunch.com/2025/07/09/blok-is-using-ai-persons-to-simulate-real-world-app-usage/">techcrunch.com</a> · <a href="https://www.joinblok.co/insights/meet-blok-future-of-product-development">joinblok.co</a> · <a href="https://siliconangle.com/2025/07/09/blok-raises-7-5m-build-ai-agents-simulate-human-behavior-accelerate-software-testing/">siliconangle.com</a></p></div>
+<div class="item" id="c18"><div class="nm">Synthetic Users（美国 / 葡萄牙） <span class="tag">加速器轮</span></div>
+<p><span class="lbl">做什么</span>生成 AI persona 做合成用户访谈，用于产品与市场研究。</p>
+<p><span class="lbl">差异化</span>品类最早的玩家之一（2022 年成立），自助 SaaS。</p>
+<p><span class="lbl">已知客户</span>公开信息未披露。</p>
+<p><span class="lbl">核心人物</span>Hugo Alves（联创 / CPO）、Kwame Ferreira（联创）。详细履历：公开信息未披露。</p>
+<p><span class="lbl">融资</span></p>
+<ul><li>2025-03-31 加速器轮，Comcast NBCUniversal LIFT Labs、Urban Innovation Fund 参与，金额未披露。</li><li>其他融资：公开信息未披露。</li></ul>
+<p class="sub"><span class="lbl">来源</span><a href="https://lift.comcast.com/smart-insights-less-friction-synthetic-users-is-simplifying-research-w-ai-personas/">lift.comcast.com</a> · <a href="https://pitchbook.com/profiles/company/541050-94">pitchbook.com</a></p></div>
+<div class="item" id="c19"><div class="nm">Uxia（西班牙 Barcelona） <span class="tag">Pre-seed</span></div>
+<p><span class="lbl">做什么</span>用合成用户测试原型和产品流程，几分钟给出可用性反馈。</p>
+<p><span class="lbl">差异化</span>面向设计 / 产品团队的轻量 UX 测试。</p>
+<p><span class="lbl">已知客户</span>公开信息未披露。</p>
+<p><span class="lbl">核心人物</span>Borja Díaz-Roig（CEO）、Víctor Perdiguer（CTO）。详细履历：公开信息未披露。</p>
+<p><span class="lbl">融资</span>2025-11 Pre-seed 约 100 万欧元，Abac Nest Ventures 领投，Encomenda VC 与天使参投。</p>
+<p class="sub"><span class="lbl">来源</span><a href="https://www.eu-startups.com/2025/11/spanish-startup-uxia-lands-e1-million-to-develop-synthetic-user-technology-for-product-teams/">eu-startups.com</a> · <a href="https://www.uxia.app/blog/announcing-our-pre-seed-investment-round">uxia.app</a></p></div>
+<div class="item" id="c20"><div class="nm">UserApproved AI（Apex Agent Labs，美国） <span class="tag">公开信息未披露</span></div>
+<p><span class="lbl">做什么</span>面向电商 / DTC，接入 GA4、Shopify、Clarity 等数据，用模拟购物 agent 输出每日运营建议。</p>
+<p><span class="lbl">差异化</span>垂直电商，交付「该做什么」的决策建议，而不是调研报告。</p>
+<p><span class="lbl">已知客户</span>公开信息未披露。</p>
+<p><span class="lbl">核心人物</span>Reynold（创始人，全名未公开），前 Google 产品负责人，做过 Gmail Gemini / Copilot 与 Google Assistant 车载。</p>
+<p><span class="lbl">融资</span>公开信息未披露。</p>
+<p class="sub"><span class="lbl">来源</span><a href="https://www.huxiu.com/article/4877614.html">huxiu.com</a></p></div>
+</section>
+<section id="t2" class="panel">
+<div class="item" id="c21"><div class="nm">Coval（美国 San Francisco，YC） <span class="tag">A 轮</span></div>
+<p><span class="lbl">做什么</span>借鉴自动驾驶仿真，用模拟来电者大规模测试语音和聊天 agent，并在上线后监控。</p>
+<p><span class="lbl">差异化</span>Waymo 式仿真与回归测试方法论；模拟口音、噪声、打断和对抗性来电者。</p>
+<p><span class="lbl">已知客户</span>部署语音 agent 的企业（客服、预约、催收、患者接待），名单公开信息未披露。</p>
+<p><span class="lbl">核心人物</span>Brooke Hopkins（创始人 / CEO），NYU Abu Dhabi CS + 数学学士；在 Google 做过语音助手；在 Waymo 负责评测任务基础设施。</p>
+<p><span class="lbl">融资（累计 3,100 万美元）</span></p>
+<ul><li>2025-01 种子 330 万美元，MaC Venture Capital 领投；General Catalyst、YC、Fortitude、Pioneer Fund、Lombard Street 参投。</li><li>2026-06-23 A 轮 2,800 万美元，Norwest 领投；Base10、Twilio Ventures、YC、MaC、Swift Ventures 参投。</li></ul>
+<p class="sub"><span class="lbl">来源</span><a href="https://www.coval.ai/blog/coval-series-a/">coval.ai</a> · <a href="https://techcrunch.com/2025/01/23/coval-evaluates-ai-voice-and-chat-agents-like-self-driving-cars/">techcrunch.com</a> · <a href="https://www.ycombinator.com/companies/coval">ycombinator.com</a></p></div>
+<div class="item" id="c22"><div class="nm">Hamming AI（美国，YC） <span class="tag">种子轮</span></div>
+<p><span class="lbl">做什么</span>语音 agent 自动化测试（模拟通话）、红队测试、上线监控、通话分析。</p>
+<p><span class="lbl">差异化</span>语音 QA 全栈。</p>
+<p><span class="lbl">已知客户</span>公开信息未披露。</p>
+<p><span class="lbl">核心人物</span>Sumanyu Sharma（CEO），滑铁卢大学系统设计工程学士；前 Citizen 数据负责人，前 Tesla 高级主任数据科学家。</p>
+<p><span class="lbl">融资</span></p>
+<ul><li>2024-12-18 种子 380 万美元，Mischief 领投。</li><li>之后的融资：公开信息未披露。</li></ul>
+<p class="sub"><span class="lbl">来源</span><a href="https://www.businesswire.com/news/home/20241218104943/en/Hamming.ai-Announces-%243.8-Million-Seed-Led-by-Mischief">businesswire.com</a> · <a href="https://www.ycombinator.com/companies/hamming-ai">ycombinator.com</a></p></div>
+<div class="item" id="c23"><div class="nm">Cekura（原 Vocera，美国，YC F24） <span class="tag">种子轮</span></div>
+<p><span class="lbl">做什么</span>语音和聊天 agent 的模拟测试、评估与生产监控。</p>
+<p><span class="lbl">已知客户</span>公开信息未披露。</p>
+<p><span class="lbl">核心人物（三人均为 IIT Bombay 校友，本科时相识）</span></p>
+<ul><li>Tarush Agarwal（CEO）：CS 与统计。</li><li>Shashij Gupta（CTO）：CS。</li><li>Sidhant Kabra（President）：机械工程。</li><li>此前工作经历：公开信息未披露。</li></ul>
+<p><span class="lbl">融资</span>2025-06 种子 240 万美元，YC 领投；Flex Capital、Hike Ventures、Pioneer Fund、Decacorn 参投，天使含 Kulveer Taggar。</p>
+<p class="sub"><span class="lbl">来源</span><a href="https://www.cekura.ai/blogs/fundraise">cekura.ai</a> · <a href="https://www.ycombinator.com/companies/cekura-ai">ycombinator.com</a> · <a href="https://acr.iitbombay.org/allstory/alumni-startup-spotlight/">acr.iitbombay.org</a></p></div>
+<div class="item" id="c24"><div class="nm">Bluejay（美国，YC S25） <span class="tag">种子轮</span></div>
+<p><span class="lbl">做什么</span>语音和聊天 agent 的模拟测试、监控与评估。</p>
+<p><span class="lbl">已知客户</span>公开信息未披露。</p>
+<p><span class="lbl">核心人物</span>Rohan Vasishth（CEO，前 AWS Bedrock）、Faraz Siddiqi（CTO，前 Microsoft Copilot）。教育背景：公开信息未披露。</p>
+<p><span class="lbl">融资</span>2025-08 种子 400 万美元，Floodgate 领投；YC、Peak XV、Homebrew 参投。</p>
+<p class="sub"><span class="lbl">来源</span><a href="https://www.businessinsider.com/bluejay-ai-startup-amazon-microsoft-y-combinator-2025-8">businessinsider.com</a> · <a href="https://www.siliconlegal.com/sls-client-floodgate-leads-bluejays-4mm-seed-round/">siliconlegal.com</a> · <a href="https://www.ycombinator.com/companies/bluejay">ycombinator.com</a></p></div>
+<div class="item" id="c25"><div class="nm">Collinear AI（美国） <span class="tag">种子轮</span></div>
+<p><span class="lbl">做什么</span>为 agent 训练与评测提供模拟用户环境（TraitMix 多轮 persona 用户模拟）、验证器和 RL 环境。</p>
+<p><span class="lbl">差异化</span>卖给模型实验室和 agent 团队做训练 / RL，不面向市场调研；与 Together AI 合作。</p>
+<p><span class="lbl">核心人物</span>Nazneen Rajani（CEO，UT Austin CS 博士，前 Hugging Face 研究负责人、Salesforce Research 高级研究科学家，MIT TR35）<a href="https://www.nazneenrajani.com/">出处</a> <a href="https://www.technologyreview.com/innovator/nazneen-rajani/">出处</a>、Soumyadeep Bakshi（联创）。</p>
+<p><span class="lbl">融资</span><span class="tag">单一来源</span> 约 1,000 万美元种子轮（Caplight 口径），Engineering Capital、HV Fund、Firestreak、11.2 Capital 参投；日期与各轮拆分未公开。</p>
+<p class="sub"><span class="lbl">来源</span><a href="https://www.collinear.ai/about-us">collinear.ai</a> · <a href="https://www.together.ai/blog/collinear-simulations-together-evals">together.ai</a> · <a href="https://www.caplight.com/company/collinear-ai">caplight.com</a></p></div>
+</section>
+<section id="t3" class="panel">
+<div class="item" id="c26"><div class="nm">Fundamental Research Labs（原 Altera，美国） <span class="tag">A 轮</span></div>
+<p><span class="lbl">做什么</span>Project Sid 在 Minecraft 里模拟 1,000+ 自主 agent，涌现出经济、文化、宗教、政府；之后转向跨垂直场景的 AI agent 产品。</p>
+<p><span class="lbl">核心人物</span>Robert Yang（杨光宇，联创 / CEO），北大物理学士、NYU 计算神经科学博士，前 MIT 脑与认知科学系 / EECS 助理教授，2023-12 离开 MIT 创业。<a href="https://sqi.mit.edu/about/people/guangyu-robert-yang">出处</a> <a href="https://altera.ai/">出处</a></p>
+<p><span class="lbl">融资（累计约 4,400 万美元）</span></p>
+<ul><li>Pre-seed 200 万美元。</li><li>2024-05 种子 900 万美元，First Spark Ventures 与 Patron 共同领投，Eric Schmidt 参与。</li><li>2025-08 A 轮 3,300 万美元，Prosus 领投；a16z speedrun、Patron、First Spark、Factorial、Patrick Collison 等参投。</li></ul>
+<p class="sub"><span class="lbl">来源</span><a href="https://techcrunch.com/2024/05/08/bye-bye-bots-alteras-game-playing-ai-agents-get-backing-from-eric-schmidt/">techcrunch.com</a> · <a href="https://techcrunch.com/2025/08/01/fundamental-research-labs-nabs-33-million-from-prosus-to-build-ai-agents-for-multiple-verticals/">techcrunch.com</a> · <a href="https://www.technologyreview.com/2024/11/27/1107377/a-minecraft-town-of-ai-characters-made-friends-invented-jobs-and-spread-religion/">technologyreview.com</a></p></div>
+<div class="item" id="c27"><div class="nm">MatrAIx（美国 Mountain View） <span class="tag">公开信息未披露</span></div>
+<p><span class="lbl">做什么</span>基于 persona 的 AI agent / 数字产品评测基础设施，覆盖问卷、聊天、网页、App 四类场景。</p>
+<p><span class="lbl">差异化</span>宣称 83 亿条画像记录（公开约 100 万条 coreset），开源（MIT 许可）。</p>
+<p><span class="lbl">已知客户</span>公开信息未披露。</p>
+<p><span class="lbl">核心人物</span></p>
+<ul><li>Xiaomin Li（CEO）：Harvard 应用数学博士，UIUC 数学 + CS 学士；经历含 Google DeepMind GenAI、Microsoft CoreAI。</li><li>Yuexing Hao（COO）：Cornell 博士，MIT EECS 博后；曾任 Microsoft Researcher，在 Google Research 实习。</li></ul>
+<p><span class="lbl">融资</span>公开信息未披露；2026-08 发布论文，公司 2026-09 成立。</p>
+<p class="sub"><span class="lbl">来源</span><a href="https://matraix.ai/">matraix.ai</a> · <a href="https://arxiv.org/abs/2608.04205">arxiv.org</a> · <a href="https://github.com/MatrAIx-ai/MatrAIx-Persona-8B">github.com</a></p></div>
+<div class="item" id="c28"><div class="nm">Eigent AI / CAMEL-AI（英国 / 全球，华人团队） <span class="tag">早期</span></div>
+<p><span class="lbl">做什么</span>CAMEL 多智能体开源框架；OASIS 是百万级 agent 社交媒体模拟器；商业产品 Eigent 做多 agent 工作流自动化。</p>
+<p><span class="lbl">核心人物</span>李国豪（Guohao Li），CAMEL-AI / Eigent 创始人，哈工大学士、KAUST CS 博士，2024 年在牛津 Philip Torr 组做博后。<a href="https://ghli.org/">出处</a> <a href="https://cemse.kaust.edu.sa/profiles/guohao-li">出处</a></p>
+<p><span class="lbl">融资</span></p>
+<ul><li>PitchBook 记录 2026-01 一笔早期 VC，Sky Arc Capital 参与，金额未披露。</li><li>Dealroom 和 Tracxn 显示无外部融资。</li></ul>
+<p class="sub"><span class="lbl">来源</span><a href="https://www.camel-ai.org/blogs/project-oasis-automation-or-simulation---the-biggest-potential-of-multi-agent-systems">camel-ai.org</a> · <a href="https://app.dealroom.co/companies/eigent_ai">dealroom.co</a></p></div>
+</section>
+<section id="t4" class="panel">
+<div class="item" id="c29"><div class="nm">Trooly.AI（元生万物（上海）人工智能科技有限公司） <span class="tag">种子轮（多轮）</span></div>
+<p><span class="lbl">做什么</span>AI 原生用户研究平台。语音 agent 和真实消费者做约 45 分钟的深度访谈，1 天交付洞察报告。</p>
+<p><span class="lbl">定性</span>AI 访谈真人，不是模拟用户。属于 AI 调研相邻赛道。</p>
+<p><span class="lbl">差异化</span></p>
+<ul><li>主打访谈深度：快慢双层推理的追问引擎。</li><li>全球样本池称 1.8 亿人，覆盖 30+ 国，主攻出海企业。</li><li>2026-07 在北美开启公测。</li></ul>
+<p><span class="lbl">业务数据</span>截至 2026-06 累计约 1.3 万场访谈。</p>
+<p><span class="lbl">核心人物</span></p>
+<ul><li>王震（Whisper，CEO）：Zulution AI 第 5 号成员，参与打造 AI 陪伴产品 Museland。Zulution AI 由 Musical.ly 创始人阳陆育创办。</li><li>孙皓（Zephyr，CTO）：Zulution AI 第 13 号成员。</li><li>教育背景：公开信息未披露。</li></ul>
+<p><span class="lbl">融资</span></p>
+<ul><li>2026-01-30 种子轮近千万美元，蓝驰创投领投；高瓴创投、王慧文参投。</li><li>2026-07-23 英文新闻稿称种子融资合计近 2,000 万美元（应为多轮累计）。</li><li>报道称成立不到一年已融三轮，各轮拆分未披露。</li></ul>
+<p><span class="lbl">成立</span>2025 年。</p>
+<p class="sub"><span class="lbl">来源</span><a href="https://elsewhere.news/zh/waves/using-ai-for-in-depth-user-interviews-backed-by-bluerun-vent">elsewhere.news</a> · <a href="https://www.cls.cn/detail/2275348">cls.cn</a> · <a href="https://m.rccaijing.com/news-7422887443261224463.html">rccaijing.com</a> · <a href="https://www.prnewswire.com/news-releases/trooly-raises-nearly-20m-seed-and-launches-ai-research-platform-for-45-minute-in-depth-interviews-with-global-consumers-302833241.html">prnewswire.com</a> · <a href="https://www.cnu.com.cn/trends/202606/260361.html">cnu.com.cn</a></p></div>
+<div class="item" id="c30"><div class="nm">Mizzen Insight（觅深科技） <span class="tag">天使+轮</span></div>
+<p><span class="lbl">做什么</span>AI 深访用户研究平台，2025-12 上线。AI 生成提纲、筛选受访者、主持访谈并动态追问，输出结构化洞察。</p>
+<p><span class="lbl">定性</span>同 Trooly，是 AI 访谈真人，不是模拟用户。</p>
+<p><span class="lbl">差异化</span>主打国内 KA 客户。</p>
+<p><span class="lbl">业务数据</span>称 4 个月服务 300+ 企业，累计 2,500+ 项目、1 万+ 小时访谈。</p>
+<p><span class="lbl">已知客户</span>阿里巴巴、字节跳动、小米、美团、元气森林。</p>
+<p><span class="lbl">核心人物</span>孙克强（创始人），清华背景，港中文 MMLab 博士，研究人机交互与人类偏好建模，曾在商汤、Meta 工作。</p>
+<p><span class="lbl">融资</span></p>
+<ul><li>种子轮：Creekstone 投资，金额未披露。</li><li>2026-04 天使+轮近千万美元，红杉中国种子基金领投；达晨创投、嘉程资本跟投，Creekstone 加码。</li></ul>
+<p class="sub"><span class="lbl">来源</span><a href="https://news.qq.com/rain/a/20260403A026K000">news.qq.com</a></p></div>
+<div class="item" id="c31"><div class="nm">MiroFish <span class="tag">孵化</span></div>
+<p><span class="lbl">做什么</span>开源的群体智能预测引擎。用新闻、政策、金融等种子信息搭建平行数字世界，让大量 agent 互动推演舆情和走势。</p>
+<p><span class="lbl">差异化</span>基于 CAMEL-AI 的 OASIS 框架，登上 GitHub 榜首，最接近「斯坦福小镇式社会模拟」的中国项目。</p>
+<p><span class="lbl">已知客户</span>公开信息未披露。</p>
+<p><span class="lbl">核心人物</span>郭航江（GitHub ID BaiFu / 666ghj），北京邮电大学大四学生，前盛大实习生；此前做过开源舆情项目 BettaFish（微舆）。</p>
+<p><span class="lbl">融资</span></p>
+<ul><li>2026-03 盛大集团陈天桥出资 3,000 万元人民币孵化。</li><li>公司主体名称和后续融资：公开信息未披露。</li></ul>
+<p class="sub"><span class="lbl">来源</span><a href="https://finance.sina.com.cn/tob/2026-03-10/doc-inhqnvwn6308857.shtml">finance.sina.com.cn</a> · <a href="https://www.chinaventure.com.cn/news/80-20260313-390480.html">chinaventure.com.cn</a> · <a href="https://github.com/666ghj/MiroFish">github.com</a></p></div>
+<div class="item" id="c32"><div class="nm">atypica.AI（特赞 Tezign 孵化） <span class="tag">母公司特赞孵化</span></div>
+<p><span class="lbl">做什么</span>商业研究 agent。用 AI 用户画像、多 agent 虚拟访谈模拟消费者决策，约 20 分钟生成研究报告。</p>
+<p><span class="lbl">差异化</span>依托特赞的企业营销内容客户群。</p>
+<p><span class="lbl">已知客户</span>特赞企业客户，具体名单公开信息未披露。</p>
+<p><span class="lbl">核心人物</span>范凌，特赞创始人兼 CEO，2015 年创立特赞，同济大学设计创意学院教授 / 博导；同济建筑学士、普林斯顿建筑硕士、哈佛设计学博士。<a href="https://www.tezign.com/page/aboutus/">出处</a> <a href="https://www.fanling.ai/about">出处</a></p>
+<p><span class="lbl">融资</span></p>
+<ul><li>atypica 未单独融资。</li><li>母公司特赞历史融资可查，线性资本为投资方之一。</li></ul>
+<p class="sub"><span class="lbl">来源</span><a href="https://atypica.ai/">atypica.ai</a> · <a href="https://www.tezign.com/company/atypica/">tezign.com</a> · <a href="https://elsewhere.news/zh/linearcapital/atypicaai">elsewhere.news</a></p></div>
+<div class="item" id="c33"><div class="nm">硅基样本（SpotQOE） <span class="tag">公开信息未披露</span></div>
+<p><span class="lbl">做什么</span>AI 虚拟受访者问卷平台。导入少量真实问卷后生成可复用的虚拟受访者，模拟答卷，并标出置信度和需要真人验证的题目。</p>
+<p><span class="lbl">主体、创始人、融资</span>公开信息未披露。</p>
+<p class="sub"><span class="lbl">来源</span><a href="https://www.spotqoe.com/">spotqoe.com</a></p></div>
+<div class="item" id="c34"><div class="nm">ValidFlow <span class="tag">寻求天使轮</span></div>
+<p><span class="lbl">做什么</span>用 AI 模拟用户测试原型、网站和语音访谈，并自动规划 A/B 实验，面向小团队。</p>
+<p><span class="lbl">融资</span>2025 年参赛时称正在寻求天使轮，结果未披露。</p>
+<p><span class="lbl">主体、创始人</span>公开信息未披露。</p>
+<p class="sub"><span class="lbl">来源</span><a href="https://aiagent2025.com/projects/3ta44cf00ljq">aiagent2025.com</a></p></div>
+<div class="item" id="c35"><div class="nm">AgentSociety（清华大学 FIB 实验室，学术项目） <span class="tag">学术项目</span></div>
+<p><span class="lbl">做什么</span>开源的大规模 agent 社会模拟平台，第二代 AgentSociety² 面向社会科学实验。</p>
+<p><span class="lbl">公司化 / 融资</span>未见公司化或融资报道。</p>
+<p class="sub"><span class="lbl">来源</span><a href="https://github.com/tsinghua-fib-lab/AgentSociety">github.com</a> · <a href="https://m.thepaper.cn/newsDetail_forward_33461540">thepaper.cn</a></p></div>
+</section>
+<div class="foot">由 Grok Bot 整理 · 2026-10-20 · 资料来源见各公司条目</div>
+</main>
+<script src="https://psylch.github.io/assets/report.js"></script>
+</body></html>
